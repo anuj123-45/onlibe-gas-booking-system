@@ -7,6 +7,7 @@ function Users() {
       <div>
         <table className="table table-striped table-dark">
           <tbody key={'header'}>
+            <tr style={{color:"white",fontWeight:"bolder"}}><td>Name</td><td>Email</td><td>Address</td></tr>
             {JSON.parse(state).map((item,key)=>{
               return <tr key={key}>
                 <td>{item.name}</td>

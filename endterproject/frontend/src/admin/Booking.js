@@ -75,6 +75,8 @@ function Booking() {
                       ACCEPT
                     </Button>
                   </td>
+                 
+             
                 </tr>
               );
             })}

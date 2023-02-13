@@ -49,7 +49,7 @@ export default function Login(){
       .catch((error) => {
         error = new Error();
       });
-      alert("Submited");
+      alert("Login Successful");
       
     }
     return(

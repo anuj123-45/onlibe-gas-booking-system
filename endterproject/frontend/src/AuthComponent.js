@@ -43,7 +43,7 @@ export default function AuthComponent() {
           error = new Error();
           alert("You have reached the limit for bookings");
         });
-      alert("ok");
+      alert("Successfully Boooked");
    
     
     } else {

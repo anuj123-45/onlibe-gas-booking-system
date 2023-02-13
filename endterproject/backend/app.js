@@ -110,15 +110,21 @@ app.post("/book", (request, response) => {
         });
 });
 
-app.post("/applyconnect", (request, response) => {
+app.post("/applyconnect", async(request, response) => {
   // hash the password
+
       // create a new user instance and collect the data
+ try{
+      const getConnection=await Connections.findOne({
+        email:request.body.email,
+      })
+      if(!getConnection){
       const connection = new Connections({
         name: request.body.name,
         email: request.body.email,
         address: request.body.address,
       });
-
+    
       // save the new user
       connection
         .save()
@@ -129,14 +135,22 @@ app.post("/applyconnect", (request, response) => {
             result,
           });
         })
+      
         // catch erroe if the new user wasn't added successfully to the database
+      
         .catch((error) => {
           response.status(500).send({
             message: "Error Applying Connection",
             error,
           });
         });
-});
+     
+      }
+ }
+ catch(err){
+  res.json({err:err.message});
+}
+    });
 
 app.post("/applytransfer", (request, response) => {
   // hash the password

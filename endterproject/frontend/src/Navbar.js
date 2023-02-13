@@ -17,8 +17,8 @@ function Navbar(){
        <br/>   <br/>   <br/>
         <Col className="text-center">
          
-         <div style={{backgroundColor:"white",borderRadius:"3px"}}>
-         <marquee><h1 style={{color:"purple",fontFamily:"sans-serif"}}>ONLINE GAS BOOKING</h1></marquee>
+         <div style={{backgroundColor:"white",borderRadius:"3px",background:"lightgreen"}}>
+         <marquee><h1 style={{color:"purple",fontFamily:"sans-serif",fontWeight:"bolder"}}>ONLINE GAS BOOKING</h1></marquee>
          </div>
           
         </Col>
