@@ -1,0 +1,13 @@
+.reg {
+  background-image: linear-gradient(to bottom right,orange, yellow,red);
+  padding: 3.5em;
+ border: 5px solid black;
+ border-radius:24px;
+}
+
+table td {
+  border: solid 1px gray;
+}
+table Button {
+  width: 100%;
+}
