@@ -97,7 +97,7 @@ function Booking() {
   );}
   else{
     return(
-      <><h1>NO BOOKINGS</h1>
+      <><h1 style={{border:"2px solid black",width:"300px",background:"white"}}>NO BOOKINGS</h1>
       <div className="mb-2">
       <Button type="submit" variant="danger" onClick={() => logout()}>
         Logout

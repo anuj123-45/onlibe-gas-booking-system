@@ -1,6 +1,16 @@
 .reg {
   background-image: linear-gradient(to bottom right,orange, yellow,red);
   padding: 3.5em;
+
+ border-radius:24px;
+ margin:0 auto;
+ width:400px;
+}
+
+
+.reg2 {
+  background-image: linear-gradient(to bottom right,lightgreen,skyblue);
+  padding: 3.5em;
  border: 5px solid black;
  border-radius:24px;
 }

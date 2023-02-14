@@ -54,7 +54,7 @@ export default function Login(){
     }
     return(
         <>
-        <div className="reg">
+        <div className="reg2" style={{width:"400px",margin:"0 auto"}}>
 <Form onSubmit={(e)=>handleSubmit(e)}>
         {/* email */}
         <Form.Group controlId="formBasicEmail">

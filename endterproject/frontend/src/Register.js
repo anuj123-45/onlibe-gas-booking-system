@@ -41,7 +41,7 @@ export default function Register(){
 
     return(
         <div className="x">
-        <div className="reg">
+        <div className="reg"  >
         <h2>Register</h2>
         <Form onSubmit={(e)=>handleSubmit(e)}>
         {/* name */}

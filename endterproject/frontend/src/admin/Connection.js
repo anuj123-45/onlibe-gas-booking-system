@@ -106,7 +106,7 @@ function Connection() {
     )
   }
   else{return(
-    <><h1>NO CONNECTIONS</h1>
+    <><h1 style={{border:"2px solid black",width:"400px",background:"white"}}>NO CONNECTIONS</h1>
       <div className="mb-2">
       <Button type="submit" variant="danger" onClick={() => logout()}>
         Logout

@@ -3,12 +3,11 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import {useNavigate} from "react-router-dom";
-import useRazorpay from "react-razorpay";
+
 
 const cookies = new Cookies();
 export default function AuthComponent() {
-
-  const navigate=useNavigate();
+const navigate=useNavigate();
   const logout = () => {
     // destroy the cookie
     cookies.remove("TOKEN", { path: "/" });
@@ -23,9 +22,8 @@ export default function AuthComponent() {
   const [name, setName] = useState(localStorage.getItem("Name"));
   const [email, setEmail] = useState(localStorage.getItem("Email"));
   const [address, setAddress] = useState(localStorage.getItem("Address"));
-  const book = () => {
-  
-
+  const book = (e) => {
+   
     if (localStorage.getItem("Connection") === "1") {
       const configuration = {
         method: "post",
@@ -43,18 +41,37 @@ export default function AuthComponent() {
           error = new Error();
           alert("You have reached the limit for bookings");
         });
-      alert("Successfully Boooked");
-   
-    
-    } else {
-      
-       
-      
-      alert("Connection Required!");
 
-    
-     
+        if(payment=="Online"){
+          e.preventDefault();
+          var options = {
+            key: "rzp_test_Gx2PIk72JFokkA",
+            key_secret: "b94Ld1yRMPySxvASs4IwMCDV",
+            amount: 115000,
+            currency: "INR",
+            name: "STARTUP_PROJECTS",
+            description: "for testing purpose",
+            
+            handler: function () {
+              alert("Payment Successfull");
+              navigate("/auth");
+            },
       
+            notes: {
+              address: "Razorpay Corporate Office",
+            },
+            theme: {
+              color: "#3399cc",
+            },
+          };
+          var pay = new window.Razorpay(options);
+          pay.open();
+        }
+        else {
+          alert("Booked successfully");
+        }
+    } else {
+      alert("Connection Required!");
     }
   };
 
@@ -70,8 +87,6 @@ export default function AuthComponent() {
           email,
           address,
         },
-       
-
       };
       axios(configuration)
         .then((result) => {
@@ -85,53 +100,48 @@ export default function AuthComponent() {
   };
 
   return (
-    <div style={{backgroundColor:"aqua",textAlign:"center"}}>
+    <div style={{ backgroundColor: "aqua", textAlign: "center" }}>
       <h1 className="text-center">Welcome, {localStorage.getItem("Name")}</h1>
-      <div className="mb-2" style={{border:"8px solid black",width:"300px",margin:"0 auto",backgroundColor:"Tomato"}}>
+      <div className="mb-2" style={{ border: "8px solid black", width: "300px", margin: "0 auto", backgroundColor: "Tomato" }}>
         <h1>BOOK GAS</h1>
-        <Form onSubmit={() => book()}>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label><b style={{fontSize:"30px"}}>Payment Method</b></Form.Label>
-            <Form.Group>
-              <Form.Label style={{fontSize:"20px"}}>
-               <b> ONLINE</b>
-                <Form.Check
-                  type="radio"
-                  name="payment"
-                  value={"Online"}
-                  onChange={() => setPayment("Online")}
-                />
-              </Form.Label>
-            </Form.Group>
-            <Form.Group>
-            <Form.Label style={{fontSize:"20px"}}>
-            <b>  CASH ON DELIVERY</b>
+        <Form onSubmit={book}>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label><b style={{ fontSize: "30px" }}>Payment Method</b></Form.Label>
+          <Form.Group>
+            <Form.Label style={{ fontSize: "20px" }}>
+              <b> ONLINE</b>
+              <Form.Check
+                type="radio"
+                name="payment"
+                value={"Online"}
+                onChange={() => setPayment("Online")} />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label style={{ fontSize: "20px" }}>
+              <b>  CASH ON DELIVERY</b>
               <Form.Check
                 type="radio"
                 name="payment"
                 value={"Cash On Delivery"}
-                onChange={() => setPayment("Cash On Delivery")}
-              />
-              </Form.Label>
-              </Form.Group>
+                onChange={() => setPayment("Cash On Delivery")} />
+            </Form.Label>
           </Form.Group>
-          <Button type="submit" variant="success">
-            Book
-          </Button>
-        </Form>
-      </div>
-      <div className="mb-2">
+        </Form.Group>
+        <Button type="submit" variant="success">
+          Book
+        </Button>
+      </Form>
+    </div><div className="mb-2">
         <h1>APPLY FOR CONNECTION</h1>
         <Button type="submit" onClick={() => apply()}>
           Apply
         </Button>
-      </div>
-      <div>
+      </div><div>
         <Button type="submit" variant="danger" onClick={() => logout()}>
           Logout
         </Button>
-      </div>
-      <br></br>
+      </div><br></br>
     </div>
   );
 }
